@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Formik, Form, FormikProps } from 'formik';
+import { fromUnixTime, formatRelative } from 'date-fns';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -11,14 +12,20 @@ interface FormValues {
 }
 
 const Home: React.FC = () => {
+  const [date, setDate] = useState<string>();
+
   const initialValues: FormValues = useMemo(
     () => ({
-      timestamp: '',
+      timestamp: '1588977925',
     }),
     [],
   );
 
-  const handleFormOnSubmit = (values: FormValues): void => {};
+  const handleFormOnSubmit = (values: FormValues): void => {
+    const parsedDate = fromUnixTime(+values.timestamp);
+
+    setDate(formatRelative(parsedDate, new Date()));
+  };
 
   return (
     <Container>
@@ -39,6 +46,13 @@ const Home: React.FC = () => {
               value={values.timestamp}
             />
             <Button type="submit">Convert</Button>
+
+            {date && (
+              <>
+                <span>Timestamp date:</span>
+                <span>{date}</span>
+              </>
+            )}
           </Form>
         )}
       </Formik>
