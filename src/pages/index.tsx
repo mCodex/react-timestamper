@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Formik, Form, FormikProps } from 'formik';
-import { fromUnixTime, format } from 'date-fns';
+import { fromUnixTime, format, getUnixTime } from 'date-fns';
 import { FaClock } from 'react-icons/fa';
 import { FiRepeat } from 'react-icons/fi';
 
@@ -18,7 +18,7 @@ const Home: React.FC = () => {
 
   const initialValues: FormValues = useMemo(
     () => ({
-      timestamp: '1588977925',
+      timestamp: String(getUnixTime(new Date())),
     }),
     [],
   );
