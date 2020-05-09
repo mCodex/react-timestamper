@@ -1,6 +1,7 @@
 # react-timestamper ⏰
 
 ![Node.js CI](https://github.com/mCodex/react-timestamper/workflows/Node.js%20CI/badge.svg)
+[![codecov](https://codecov.io/gh/mcodex/react-timestamper/branch/master/graph/badge.svg)](https://codecov.io/gh/mcodex/react-timestamper)
 
 ## 👨‍💻Motivation
 

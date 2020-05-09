@@ -12,23 +12,30 @@ const formAnimation = keyframes({
 export const Container = styled.div`
   display: flex;
   height: 100%;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  header {
+    display: inherit;
+    flex-direction: row;
+    margin-bottom: 60px;
+    align-items: center;
+
+    div {
+      margin-left: 15px;
+
+      h1 {
+        font-weight: bold;
+      }
+    }
+  }
 
   form {
     display: flex;
     flex-direction: column;
     animation: ${formAnimation} 2s;
     align-items: center;
-
-    button {
-      border-radius: 5px;
-      height: 40px;
-      color: #fff;
-      margin: 30px 0 0 0;
-      border: 2px solid #eb9932;
-      background-color: #eb9932;
-    }
 
     hr {
       border: 0.5px solid #ffffff50;

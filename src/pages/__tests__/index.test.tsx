@@ -36,4 +36,32 @@ describe('Home', () => {
       expect(timestampInput.value).toBe(timestampValue);
     });
   });
+
+  it('should be able to submit form', async () => {
+    const { getByTestId } = render(<App />);
+
+    const timestampInput = await waitForElement(() =>
+      getByTestId('timestampInput'),
+    );
+
+    const timestampValue = '1589034062';
+
+    act(() => {
+      fireEvent.change(timestampInput, {
+        target: { value: timestampValue },
+      });
+    });
+
+    const submitButton = await waitForElement(() =>
+      getByTestId('submitButton'),
+    );
+
+    act(() => {
+      fireEvent.submit(submitButton);
+    });
+
+    wait(() => {
+      expect(submitButton).toHaveBeenCalledTimes(1);
+    });
+  });
 });

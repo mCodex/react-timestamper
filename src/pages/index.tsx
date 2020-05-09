@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Formik, Form, FormikProps } from 'formik';
 import { fromUnixTime, formatRelative } from 'date-fns';
 import { FaClock } from 'react-icons/fa';
+import { FiRepeat } from 'react-icons/fi';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -30,6 +31,14 @@ const Home: React.FC = () => {
 
   return (
     <Container>
+      <header>
+        <FiRepeat size={40} color="#fff" />
+        <div>
+          <h1>Timestamper</h1>
+          <h3>Converts timestamp into date</h3>
+        </div>
+      </header>
+
       <Formik initialValues={initialValues} onSubmit={handleFormOnSubmit}>
         {({
           handleSubmit,
@@ -47,7 +56,9 @@ const Home: React.FC = () => {
               onBlur={handleBlur}
               value={values.timestamp}
             />
-            <Button type="submit">Convert</Button>
+            <Button data-testid="submitButton" type="submit">
+              Convert
+            </Button>
 
             {date && (
               <>
