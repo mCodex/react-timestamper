@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Formik, Form, FormikProps } from 'formik';
 import { fromUnixTime, formatRelative } from 'date-fns';
+import { FaClock } from 'react-icons/fa';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -38,6 +39,7 @@ const Home: React.FC = () => {
         }: FormikProps<FormValues>) => (
           <Form onSubmit={handleSubmit}>
             <Input
+              icon={FaClock}
               name="timestamp"
               data-testid="timestampInput"
               placeholder="Timestamp"
@@ -49,6 +51,7 @@ const Home: React.FC = () => {
 
             {date && (
               <>
+                <hr />
                 <span>Timestamp date:</span>
                 <span>{date}</span>
               </>
