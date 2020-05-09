@@ -40,5 +40,6 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./build
     
-    - uses: actions/checkout@master
     - uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage
