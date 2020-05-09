@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Formik, Form, FormikProps } from 'formik';
-import { fromUnixTime, formatRelative } from 'date-fns';
+import { fromUnixTime, format } from 'date-fns';
 import { FaClock } from 'react-icons/fa';
 import { FiRepeat } from 'react-icons/fi';
 
@@ -26,7 +26,7 @@ const Home: React.FC = () => {
   const handleFormOnSubmit = (values: FormValues): void => {
     const parsedDate = fromUnixTime(+values.timestamp);
 
-    setDate(formatRelative(parsedDate, new Date()));
+    setDate(format(parsedDate, 'MM/dd/yyyy hh:mm:ss a'));
   };
 
   return (
