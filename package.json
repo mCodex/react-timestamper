@@ -24,9 +24,19 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
+    "test:ci": "npm test -- --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "homepage": "https://mcodex.github.io/react-timestamper",
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{ts,tsx}",
+      "!<rootDir>/src/index.tsx",
+      "!<rootDir>/src/serviceWorker.ts",
+      "!<rootDir>/src/styles/*.ts"
+    ],
+    "coverageReporters": ["text-summary", "lcov"]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
