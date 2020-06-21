@@ -4,7 +4,7 @@ import {
   fireEvent,
   act,
   waitForElement,
-  wait,
+  waitFor,
 } from '@testing-library/react';
 
 import App from '..';
@@ -18,11 +18,11 @@ describe('Home', () => {
   });
 
   it('should be able to change input value', async () => {
-    const { getByTestId } = render(<App />);
+    const {  findByTestId } = render(<App />);
 
-    const timestampInput = await waitForElement(() =>
-      getByTestId('timestampInput'),
-    );
+    const timestampInput = (await findByTestId(
+      'timestampInput',
+    )) as HTMLInputElement;
 
     const timestampValue = '1589034062';
 
@@ -32,17 +32,16 @@ describe('Home', () => {
       });
     });
 
-    wait(() => {
+    waitFor(() => {
       expect(timestampInput.value).toBe(timestampValue);
     });
   });
 
   it('should be able to submit form', async () => {
-    const { getByTestId } = render(<App />);
+    const { getByTestId, findByTestId } = render(<App />);
 
-    const timestampInput = await waitForElement(() =>
-      getByTestId('timestampInput'),
-    );
+    const timestampInput = await findByTestId('timestampInput');
+
 
     const timestampValue = '1589034062';
 
@@ -52,15 +51,13 @@ describe('Home', () => {
       });
     });
 
-    const submitButton = await waitForElement(() =>
-      getByTestId('submitButton'),
-    );
+    const submitButton = await findByTestId('submitButton')
 
     act(() => {
       fireEvent.submit(submitButton);
     });
 
-    wait(() => {
+    waitFor(() => {
       expect(submitButton).toHaveBeenCalledTimes(1);
     });
   });
