@@ -30,6 +30,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: npx npm-force-resolutions    
     - run: npm install    
     - run: npm run test:ci
     - run: npm run build
