@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]     
+        node-version: [14.x]     
 
     steps:
     - uses: actions/cache@v1.1.2
@@ -30,9 +30,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install    
-    - run: npm run test:ci
-    - run: npm run build
+    - run: yarn install    
+    - run: yarn test
+    - run: yarn build
     
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
