@@ -4,6 +4,7 @@
   "private": false,
   "homepage": "https://mcodex.github.io/react-timestamper",
   "scripts": {
+    "preinstall": "npm-force-resolutions",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
