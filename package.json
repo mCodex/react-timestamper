@@ -13,12 +13,12 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/react": "^10.3.0",
     "@testing-library/user-event": "^12.0.4",
     "@types/jest": "^26.0.3",
-    "@types/node": "^14.0.13",
-    "@types/react": "^16.9.38",
+    "@types/node": "^14.0.14",
+    "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
     "date-fns": "^2.14.0",
     "formik": "^2.1.4",
@@ -27,7 +27,7 @@
     "react-icons": "^3.10.0",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1",
-    "typescript": "~3.9.5"
+    "typescript": "~3.9.6"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.0",
