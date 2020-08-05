@@ -4,16 +4,16 @@
     "main.js.map": "/react-timestamper/static/js/main.3e635f34.chunk.js.map",
     "runtime-main.js": "/react-timestamper/static/js/runtime-main.0db7ea50.js",
     "runtime-main.js.map": "/react-timestamper/static/js/runtime-main.0db7ea50.js.map",
-    "static/js/2.43943ba1.chunk.js": "/react-timestamper/static/js/2.43943ba1.chunk.js",
-    "static/js/2.43943ba1.chunk.js.map": "/react-timestamper/static/js/2.43943ba1.chunk.js.map",
+    "static/js/2.fcfcf18f.chunk.js": "/react-timestamper/static/js/2.fcfcf18f.chunk.js",
+    "static/js/2.fcfcf18f.chunk.js.map": "/react-timestamper/static/js/2.fcfcf18f.chunk.js.map",
     "index.html": "/react-timestamper/index.html",
-    "precache-manifest.d9189f7349b9dadbbc374167522c1ebd.js": "/react-timestamper/precache-manifest.d9189f7349b9dadbbc374167522c1ebd.js",
+    "precache-manifest.98305885a4243f208cb2146d8688efa7.js": "/react-timestamper/precache-manifest.98305885a4243f208cb2146d8688efa7.js",
     "service-worker.js": "/react-timestamper/service-worker.js",
-    "static/js/2.43943ba1.chunk.js.LICENSE.txt": "/react-timestamper/static/js/2.43943ba1.chunk.js.LICENSE.txt"
+    "static/js/2.fcfcf18f.chunk.js.LICENSE.txt": "/react-timestamper/static/js/2.fcfcf18f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0db7ea50.js",
-    "static/js/2.43943ba1.chunk.js",
+    "static/js/2.fcfcf18f.chunk.js",
     "static/js/main.3e635f34.chunk.js"
   ]
 }
