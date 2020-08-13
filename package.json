@@ -10,7 +10,9 @@
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "test:ci": "npm test -- --coverage --watchAll=false",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.0",
@@ -27,7 +29,8 @@
     "react-icons": "^3.10.0",
     "react-scripts": "3.4.3",
     "styled-components": "^5.1.1",
-    "typescript": "~3.9.6"
+    "typescript": "~3.9.6",
+    "snyk": "^1.373.1"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.0",
@@ -45,7 +48,7 @@
     "prettier": "^2.0.5"
   },
   "resolutions": {
-     "jest-environment-jsdom": "^26.0.1"
+    "jest-environment-jsdom": "^26.0.1"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -70,5 +73,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "snyk": true
 }
