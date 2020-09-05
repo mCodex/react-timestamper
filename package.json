@@ -30,7 +30,7 @@
     "react-scripts": "3.4.3",
     "styled-components": "^5.1.1",
     "typescript": "~3.9.6",
-    "snyk": "^1.373.1"
+    "snyk": "^1.374.0"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.0",
