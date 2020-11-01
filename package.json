@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "build:gactions": "rimraf out && next build && next export && touch out/.nojekyll && cp CNAME out/CNAME",
+    "build:gactions": "rimraf out && next build && next export && touch out/.nojekyll",
     "start": "next start"
   },
   "dependencies": {

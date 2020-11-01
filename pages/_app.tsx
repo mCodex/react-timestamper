@@ -19,10 +19,6 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
   <>
     <Head>
       <title>Timestamper</title>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
-        rel="stylesheet"
-      />
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#3C3845" />
 
