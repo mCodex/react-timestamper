@@ -64,7 +64,7 @@ const Home: React.FC = () => {
               <>
                 <hr />
                 <span>Timestamp date:</span>
-                <span>{date}</span>
+                <span data-testid="convertedDate">{date}</span>
               </>
             )}
           </Form>

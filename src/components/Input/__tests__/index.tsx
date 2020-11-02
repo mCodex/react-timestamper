@@ -8,6 +8,7 @@ describe('Input', () => {
     const { getByTestId } = render(<CustomInput data-testid="1" />);
 
     const labelElement = getByTestId('1');
-    expect(labelElement).toBeInTheDocument();
+
+    expect(labelElement).toBeTruthy();
   });
 });
