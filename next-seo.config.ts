@@ -14,7 +14,7 @@ export default {
     type: 'website',
     locale: 'en_US',
     url: 'https://mcodex.dev/react-timestamper',
-    site_name: 'mCodex - Mateus Andrade',
+    site_name: 'Timestamper',
     images: [
       {
         url:
