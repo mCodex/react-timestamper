@@ -7,6 +7,7 @@ module.exports = withPlugins([
     {
       pwa: {
         dest: 'public',
+        subdomainPrefix: '/react-timestamper',
       },
     },
   ],
