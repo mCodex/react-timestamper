@@ -41,7 +41,7 @@ const Home: React.FC = () => {
 
       <Formik initialValues={initialValues} onSubmit={handleFormOnSubmit}>
         {({
-          // handleSubmit,
+          handleSubmit,
           handleChange,
           handleBlur,
           values,
@@ -56,7 +56,11 @@ const Home: React.FC = () => {
               onBlur={handleBlur}
               value={values.timestamp}
             />
-            <Button data-testid="submitButton" type="submit">
+            <Button
+              data-testid="submitButton"
+              type="button"
+              onClick={() => handleSubmit()}
+            >
               Convert
             </Button>
 
