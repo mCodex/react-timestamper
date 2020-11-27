@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Formik, Form, FormikProps } from 'formik';
+import { Form, Formik, FormikProps } from 'formik';
 import { fromUnixTime, format, getUnixTime } from 'date-fns';
 import { FaClock } from 'react-icons/fa';
 import { FiRepeat } from 'react-icons/fi';
@@ -46,7 +46,7 @@ const Home: React.FC = () => {
           handleBlur,
           values,
         }: FormikProps<FormValues>) => (
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Input
               icon={FaClock}
               name="timestamp"
@@ -56,11 +56,7 @@ const Home: React.FC = () => {
               onBlur={handleBlur}
               value={values.timestamp}
             />
-            <Button
-              data-testid="submitButton"
-              type="button"
-              onClick={() => handleSubmit()}
-            >
+            <Button data-testid="submitButton" type="submit">
               Convert
             </Button>
 
