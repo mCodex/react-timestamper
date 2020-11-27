@@ -41,12 +41,12 @@ const Home: React.FC = () => {
 
       <Formik initialValues={initialValues} onSubmit={handleFormOnSubmit}>
         {({
-          handleSubmit,
+          // handleSubmit,
           handleChange,
           handleBlur,
           values,
         }: FormikProps<FormValues>) => (
-          <Form onSubmit={handleSubmit}>
+          <Form>
             <Input
               icon={FaClock}
               name="timestamp"
