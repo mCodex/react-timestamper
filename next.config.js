@@ -8,12 +8,14 @@ module.exports = withPlugins([
       pwa: {
         dest: 'public',
         scope: '/react-timestamper',
-        subdomainPrefix: '/react-timestamper',
       },
     },
   ],
   {
     basePath: '/react-timestamper',
     assetPrefix: '/react-timestamper/',
+    future: {
+      webpack5: true,
+    },
   },
 ]);

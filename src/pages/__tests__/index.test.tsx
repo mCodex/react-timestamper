@@ -50,8 +50,9 @@ describe('Home', () => {
       fireEvent.submit(submitButton);
     });
 
-    const convertedDate = await (await findByTestId('convertedDate'))
-      .textContent;
+    const convertedDate = await (
+      await findByTestId('convertedDate')
+    ).textContent;
 
     await waitFor(() => {
       expect(convertedDate).toBe('05/09/2020 11:21:02 AM');
