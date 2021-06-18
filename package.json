@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "date-fns": "^2.21.3",
+    "date-fns": "^2.22.0",
     "formik": "^2.2.6",
     "next": "^10.2.0",
     "next-compose-plugins": "^2.2.1",
