@@ -1,4 +1,5 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from 'react';
+
 import styled from 'styled-components';
 
 const Button: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = styled.button`

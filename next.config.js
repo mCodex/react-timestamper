@@ -1,19 +1,15 @@
-const withPlugins = require('next-compose-plugins');
+/** @type {import('next').NextConfig} */
+
 const withPWA = require('next-pwa');
 
-module.exports = withPlugins([
-  [
-    withPWA,
-    {
-      pwa: {
-        dest: 'public',
-      },
-    },
-  ],
-  {
-    basePath: '/react-timestamper',
-    future: {
-      webpack5: true,
-    },
+module.exports = withPWA({
+  reactStrictMode: true,
+  compiler: {
+    styledComponents: true,
   },
-]);
+  pwa: {
+    dest: 'public'
+  },
+  basePath: '/react-timestamper'
+});
+

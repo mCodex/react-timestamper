@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, fireEvent, act, waitFor } from '@testing-library/react';
 
 import App from '..';

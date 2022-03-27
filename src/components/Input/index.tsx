@@ -1,4 +1,5 @@
-import React, { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
+
 import { IconBaseProps } from 'react-icons';
 
 import { Container, Input } from './styles';

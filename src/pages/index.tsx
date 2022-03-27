@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+
 import { Form, Formik, FormikProps } from 'formik';
 import { fromUnixTime, format, getUnixTime } from 'date-fns';
 import { FaClock } from 'react-icons/fa';
