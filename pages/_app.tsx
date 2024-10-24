@@ -2,14 +2,11 @@ import Head from 'next/head';
 import { AppProps } from 'next/app';
 import Router from 'next/router';
 import { DefaultSeo } from 'next-seo';
-import {Lato} from 'next/font/google';
 import SEO from '../next-seo.config';
 
 import GloalStyle from '../src/styles/global';
 
 import { pageview } from '../src/services/ga';
-
-const lato =  Lato({ weight: ['400', '700'], subsets: ['latin'] });
 
 Router.events.on(
   'routeChangeComplete',
@@ -86,13 +83,6 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
       />
 
       <meta name="apple-mobile-web-app-capable" content="yes" />
-
-      <style jsx global>{`
-        * {
-          font-family: ${lato.style.fontFamily};
-        }
-      `}</style>
-
     </Head>
     <DefaultSeo {...SEO} />
     <Component {...pageProps} />

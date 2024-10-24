@@ -1,10 +1,20 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document';
 
-import { GA_TRACKING_ID } from '../src/services/ga';
 import { ServerStyleSheet } from 'styled-components';
+import { GA_TRACKING_ID } from '../src/services/ga';
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
+  static async getInitialProps(ctx: DocumentContext): Promise<{
+    styles: JSX.Element;
+    html: string;
+    head?: JSX.Element[];
+  }> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
     try {
@@ -14,8 +24,14 @@ export default class MyDocument extends Document {
             sheet.collectStyles(<App {...props} />),
         });
       const initialProps = await Document.getInitialProps(ctx);
+
+      const head = initialProps.head?.filter(
+        (element) => element !== null,
+      ) as JSX.Element[];
+
       return {
         ...initialProps,
+        head,
         styles: (
           <>
             {initialProps.styles}
@@ -27,7 +43,7 @@ export default class MyDocument extends Document {
       sheet.seal();
     }
   }
-  
+
   render(): JSX.Element {
     return (
       <Html lang="en">
