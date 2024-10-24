@@ -2,17 +2,15 @@
 
 const withPWA = require('next-pwa');
 
-module.exports = withPWA({
-  output: 'export',
+module.exports = {
+  output: 'public',
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
   },
-  pwa: {
-    dest: 'public',
-    disable: process.env.NODE_ENV === 'development',
-    register: true,
-    skipWaiting: true,
-  },
   basePath: '/react-timestamper',
+};
+
+module.exports = withPWA({
+  dest: 'public',
 });
