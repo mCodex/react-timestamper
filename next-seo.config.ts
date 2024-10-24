@@ -17,8 +17,7 @@ export default {
     site_name: 'Timestamper',
     images: [
       {
-        url:
-          'https://mcodex.dev/react-timestamper/assets/manifest-icon-512.png',
+        url: 'https://mcodex.dev/react-timestamper/assets/manifest-icon-512.png',
         width: 800,
         height: 600,
         alt: 'Timestamper',

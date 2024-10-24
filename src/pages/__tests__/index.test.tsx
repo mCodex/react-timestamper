@@ -1,4 +1,5 @@
-import { render, fireEvent, act, waitFor } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/dom';
 
 import App from '..';
 
