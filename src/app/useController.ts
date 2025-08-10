@@ -1,75 +1,103 @@
-import { useState, useEffect } from "react";
+'use client';
 
-const useController = () => {
-  const [inputTimestamp, setInputTimestamp] = useState("");
-  const [currentTimestamp, setCurrentTimestamp] = useState("");
-  const [currentDate, setCurrentDate] = useState("");
-  const [convertedDate, setConvertedDate] = useState("");
-  const [error, setError] = useState("");
+import { useState, useEffect, useCallback } from 'react';
+import { useForm } from '@tanstack/react-form';
+import { timestampSchema, type TimestampFormData } from './schemas/timestamp';
+import { 
+  formatTimestamp, 
+  formatTimestampLocal, 
+  getRelativeTime, 
+  getCurrentTimestamp,
+  getCurrentTimestampMs 
+} from './utils/timestamp';
+
+export const useTimestampController = () => {
+  // Current timestamp state
+  const [currentTimestamp, setCurrentTimestamp] = useState<number>(0);
+  const [currentTimestampMs, setCurrentTimestampMs] = useState<number>(0);
+  
+  // Conversion results state
+  const [convertedDate, setConvertedDate] = useState<string>('');
+  const [convertedDateLocal, setConvertedDateLocal] = useState<string>('');
+  const [relativeTime, setRelativeTime] = useState<string>('');
+  
+  // UI state
+  const [copySuccess, setCopySuccess] = useState<string>('');
   const [mounted, setMounted] = useState(false);
 
+  // Update current timestamp every second
   useEffect(() => {
-    // Only run on client side to avoid hydration issues
     setMounted(true);
     
     const updateTimestamp = () => {
-      setCurrentTimestamp(Math.floor(Date.now() / 1000).toString());
-      setCurrentDate(new Date().toLocaleString());
+      setCurrentTimestamp(getCurrentTimestamp());
+      setCurrentTimestampMs(getCurrentTimestampMs());
     };
-    
+
     updateTimestamp();
     const interval = setInterval(updateTimestamp, 1000);
+
     return () => clearInterval(interval);
   }, []);
 
-  const handleConvert = () => {
-    if (!inputTimestamp.trim()) {
-      setError("Please enter a timestamp");
-      setConvertedDate("");
-      return;
-    }
+  // Form setup with TanStack React Form
+  const form = useForm({
+    defaultValues: {
+      timestamp: '',
+    } as TimestampFormData,
+    onSubmit: async ({ value }) => {
+      try {
+        // Validate with Zod
+        const validated = timestampSchema.parse(value);
+        const numTimestamp = Number(validated.timestamp);
+        
+        setConvertedDate(formatTimestamp(numTimestamp));
+        setConvertedDateLocal(formatTimestampLocal(numTimestamp));
+        setRelativeTime(getRelativeTime(numTimestamp));
+      } catch (error) {
+        console.error('Validation error:', error);
+      }
+    },
+  });
 
-    setError("");
-
+  // Copy to clipboard functionality
+  const copyToClipboard = useCallback(async (text: string, type: string) => {
     try {
-      const timestamp = parseInt(inputTimestamp);
-      
-      if (isNaN(timestamp)) {
-        throw new Error("Invalid timestamp format");
-      }
-
-      const date = timestamp.toString().length === 10 
-        ? new Date(timestamp * 1000)
-        : new Date(timestamp);
-
-      if (isNaN(date.getTime())) {
-        throw new Error("Invalid timestamp");
-      }
-      
-      setConvertedDate(date.toLocaleString());
+      await navigator.clipboard.writeText(text);
+      setCopySuccess(`${type} copied!`);
+      setTimeout(() => setCopySuccess(''), 2000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Conversion failed");
-      setConvertedDate("");
+      console.error('Failed to copy: ', err);
+      setCopySuccess('Failed to copy');
+      setTimeout(() => setCopySuccess(''), 2000);
     }
-  };
+  }, []);
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleConvert();
-    }
-  };
+  // Get formatted current dates
+  const getCurrentFormattedDates = useCallback(() => {
+    return {
+      utc: formatTimestamp(currentTimestamp),
+      local: formatTimestampLocal(currentTimestamp),
+    };
+  }, [currentTimestamp]);
 
   return {
-    inputTimestamp,
-    setInputTimestamp,
+    // State
     currentTimestamp,
-    currentDate,
+    currentTimestampMs,
     convertedDate,
-    error,
+    convertedDateLocal,
+    relativeTime,
+    copySuccess,
     mounted,
-    handleConvert,
-    handleKeyPress,
+    
+    // Form
+    form,
+    
+    // Actions
+    copyToClipboard,
+    getCurrentFormattedDates,
   };
 };
 
-export default useController;
+export default useTimestampController;
