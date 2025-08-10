@@ -1,108 +1,57 @@
-"use client";
+import { TbClock, TbRefresh } from "react-icons/tb";
+import TimestampDisplay from "./components/TimestampDisplay";
+import TimestampConverter from "./components/TimestampConverter";
 
-import { TbClock, TbRefresh, TbX, TbCheck, TbBulb } from "react-icons/tb";
-import useController from "./useController";
 
 export default function Home() {
-  const {
-    inputTimestamp,
-    currentTimestamp,
-    convertedDate,
-    error,
-    handleConvert,
-    setInputTimestamp
-  } = useController();
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleConvert();
-    }
-  };
 
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content">
-        <div className="card w-full max-w-2xl bg-base-100 shadow-xl">
-          <div className="card-body">
-            {/* Header */}
-            <div className="text-center mb-8">
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <TbRefresh className="text-2xl text-primary" />
-                <h1 className="text-3xl font-bold">Timestamper</h1>
-              </div>
-              <p className="text-base-content/70">Converts timestamp into date</p>
+    <div className="min-h-screen bg-base-300">
+      <div className="container mx-auto p-6">
+        
+        {/* Header - Static Server Component */}
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <TbRefresh className="text-3xl text-warning" />
+            <h1 className="text-4xl font-bold text-base-content">Timestamper</h1>
+          </div>
+          <p className="text-base-content/70">Converts timestamp into date</p>
+        </div>
+
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+          
+          {/* Current Timestamp - Client Component for real-time updates */}
+          <div className="card bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title text-warning">
+                <TbClock className="text-xl" />
+                Current Timestamp
+              </h2>
+              <TimestampDisplay />
             </div>
+          </div>
 
-            {/* Current Timestamp Display */}
-            <div className="card bg-base-200 mb-6">
-              <div className="card-body">
-                <h2 className="card-title text-lg mb-3">Current Timestamp</h2>
-                <div className="flex items-center gap-3">
-                  <TbClock className="text-xl text-primary" />
-                  <span className="text-2xl font-mono font-bold text-primary">
-                    {currentTimestamp}
-                  </span>
-                </div>
-                <div className="text-sm text-base-content/70 mt-2">
-                  {new Date().toLocaleString()}
-                </div>
-              </div>
-            </div>
-
-            {/* Converter Section */}
-            <div className="space-y-4">
-              <h2 className="card-title text-lg">Convert Timestamp</h2>
-              
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Enter timestamp</span>
-                </label>
-                <div className="join w-full">
-                  <input
-                    type="text"
-                    placeholder="1754854149"
-                    className="input input-bordered join-item flex-1"
-                    value={inputTimestamp}
-                    onChange={(e) => setInputTimestamp(e.target.value)}
-                    onKeyDown={handleKeyPress}
-                  />
-                  <button
-                    className="btn btn-primary join-item"
-                    onClick={handleConvert}
-                  >
-                    Convert
-                  </button>
-                </div>
-              </div>
-
-              {/* Error Display */}
-              {error && (
-                <div className="alert alert-error">
-                  <TbX className="h-6 w-6" />
-                  <span>{error}</span>
-                </div>
-              )}
-
-              {/* Success Display */}
-              {convertedDate && (
-                <div className="alert alert-success">
-                  <TbCheck className="h-6 w-6" />
-                  <span className="font-mono">{convertedDate}</span>
-                </div>
-              )}
-            </div>
-
-            {/* Info Section */}
-            <div className="divider"></div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-base-content/60 mb-2">
-                <TbBulb className="h-4 w-4" />
-                <span>Tip: Supports both seconds and milliseconds timestamps</span>
-              </div>
-              <p className="text-sm text-base-content/60">Press Enter to convert or click the Convert button</p>
+          {/* Converter - Client Component for interactivity */}
+          <div className="card bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title text-warning mb-4">Convert Timestamp</h2>
+              <TimestampConverter />
             </div>
           </div>
         </div>
+
+        {/* Info - Static Server Component */}
+        <div className="text-center mt-8">
+          <div className="card bg-base-200 max-w-md mx-auto">
+            <div className="card-body text-center">
+              <p className="text-sm">
+                Supports both seconds (10 digits) and milliseconds (13 digits) timestamps
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );

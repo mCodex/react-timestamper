@@ -1,26 +1,11 @@
-import { useState, useEffect } from "react";
+"use client";
 
-const useController = () => {
+import { useState } from "react";
+
+export default function TimestampConverter() {
   const [inputTimestamp, setInputTimestamp] = useState("");
-  const [currentTimestamp, setCurrentTimestamp] = useState("");
-  const [currentDate, setCurrentDate] = useState("");
   const [convertedDate, setConvertedDate] = useState("");
   const [error, setError] = useState("");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // Only run on client side to avoid hydration issues
-    setMounted(true);
-    
-    const updateTimestamp = () => {
-      setCurrentTimestamp(Math.floor(Date.now() / 1000).toString());
-      setCurrentDate(new Date().toLocaleString());
-    };
-    
-    updateTimestamp();
-    const interval = setInterval(updateTimestamp, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const handleConvert = () => {
     if (!inputTimestamp.trim()) {
@@ -59,17 +44,41 @@ const useController = () => {
     }
   };
 
-  return {
-    inputTimestamp,
-    setInputTimestamp,
-    currentTimestamp,
-    currentDate,
-    convertedDate,
-    error,
-    mounted,
-    handleConvert,
-    handleKeyPress,
-  };
-};
+  return (
+    <div className="space-y-4">
+      <div className="form-control">
+        <input
+          type="text"
+          placeholder="1754854149"
+          className="input input-bordered w-full"
+          value={inputTimestamp}
+          onChange={(e) => setInputTimestamp(e.target.value)}
+          onKeyDown={handleKeyPress}
+        />
+      </div>
 
-export default useController;
+      <button
+        className="btn btn-warning w-full"
+        onClick={handleConvert}
+      >
+        Convert
+      </button>
+
+      {/* Results */}
+      {error && (
+        <div className="alert alert-error">
+          <span>{error}</span>
+        </div>
+      )}
+
+      {convertedDate && (
+        <div className="alert alert-success">
+          <div>
+            <div className="font-bold">Converted Date:</div>
+            <div className="font-mono text-lg">{convertedDate}</div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
