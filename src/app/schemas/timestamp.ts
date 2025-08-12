@@ -6,6 +6,7 @@ export const timestampSchema = z.object({
     .refine((val) => {
       // Check if it's a valid number (timestamp can be string representation of number)
       const num = Number(val);
+
       if (isNaN(num)) return false;
       
       // Check if it's a reasonable timestamp (between 1970 and 2100)

@@ -24,6 +24,7 @@ export default function ServiceWorkerUpdateToast() {
           .catch(() => {});
       }
     };
+
     document.addEventListener("visibilitychange", onVisibility);
 
     return () => {

@@ -19,7 +19,9 @@ export default function InstallPWAButton() {
       setDeferredPrompt(e);
       setVisible(true);
     };
+
     window.addEventListener("beforeinstallprompt", onBeforeInstallPrompt as EventListener);
+
     return () => window.removeEventListener("beforeinstallprompt", onBeforeInstallPrompt as EventListener);
   }, []);
 
@@ -29,6 +31,7 @@ export default function InstallPWAButton() {
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
+
     setVisible(false);
     setDeferredPrompt(null);
     console.log("PWA install outcome:", outcome);

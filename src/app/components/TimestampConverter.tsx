@@ -32,6 +32,7 @@ export default function TimestampConverter({ controller }: Props) {
           validators={{
             onChange: ({ value }) => {
               const result = timestampSchema.shape.timestamp.safeParse(value);
+
               return result.success ? undefined : result.error.issues[0]?.message;
             },
           }}

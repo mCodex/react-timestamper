@@ -8,7 +8,6 @@ const firaSans = Fira_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-
 export const metadata: Metadata = {
   title: "Timestamper - Convert timestamps into dates",
   description: "A simple tool to convert Unix timestamps into human-readable dates and view the current timestamp",

@@ -12,6 +12,7 @@ export default function CopyField({ label, value, onCopy, large }: CopyFieldProp
       <label className="label">
         <span className="label-text font-medium text-orange-400">{label}</span>
       </label>
+
       <div className="input-group">
         <input
           type="text"
@@ -19,6 +20,7 @@ export default function CopyField({ label, value, onCopy, large }: CopyFieldProp
           value={value}
           readOnly
         />
+
         <button
           type="button"
           className="btn btn-square bg-orange-500 hover:bg-orange-600 border-orange-500 text-white"
@@ -26,6 +28,7 @@ export default function CopyField({ label, value, onCopy, large }: CopyFieldProp
         >
           <TbCopy />
         </button>
+        
       </div>
     </div>
   );

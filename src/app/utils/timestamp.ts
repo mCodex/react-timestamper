@@ -11,18 +11,21 @@ dayjs.extend(relativeTime);
 export const formatTimestamp = (timestamp: number): string => {
   // Handle both seconds and milliseconds timestamps
   const ts = timestamp > 1e12 ? timestamp : timestamp * 1000;
+
   return dayjs(ts).format('YYYY-MM-DD HH:mm:ss UTC');
 };
 
 export const formatTimestampLocal = (timestamp: number): string => {
   // Handle both seconds and milliseconds timestamps
   const ts = timestamp > 1e12 ? timestamp : timestamp * 1000;
+
   return dayjs(ts).format('YYYY-MM-DD HH:mm:ss');
 };
 
 export const getRelativeTime = (timestamp: number): string => {
   // Handle both seconds and milliseconds timestamps
   const ts = timestamp > 1e12 ? timestamp : timestamp * 1000;
+
   return dayjs(ts).fromNow();
 };
 

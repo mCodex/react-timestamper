@@ -6,6 +6,7 @@ export default function Footer() {
           Built with <span className="text-orange-500">DaisyUI</span> + Next.js 15 • Open Source ♥️ • Made for developers who live in
           <span className="mx-1">⏱️</span> time.
         </p>
+
         <nav className="grid grid-flow-col gap-4">
           <a className="link link-hover" href="https://github.com/mCodex/react-timestamper" target="_blank" rel="noreferrer">
             GitHub
@@ -17,6 +18,7 @@ export default function Footer() {
             Next.js
           </a>
         </nav>
+        
       </aside>
     </footer>
   );
