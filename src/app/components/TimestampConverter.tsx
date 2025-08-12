@@ -1,6 +1,7 @@
 'use client';
 
-import { TbCopy } from "react-icons/tb";
+import CopyField from "./common/CopyField";
+import ResultSection from "./common/ResultSection";
 import { useTimestampController, type TimestampController } from "../useController";
 import { timestampSchema } from "../schemas/timestamp";
 
@@ -84,49 +85,18 @@ export default function TimestampConverter({ controller }: Props) {
 
       {/* Results */}
       {convertedDate && (
-        <div className="mt-8 space-y-4">
-          <div className="divider text-orange-400">Result</div>
-          
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text font-medium text-orange-400">Date (UTC)</span>
-            </label>
-            <div className="input-group">
-              <input 
-                type="text" 
-                className="input input-bordered flex-1 font-mono bg-base-200" 
-                value={convertedDate}
-                readOnly
-              />
-              <button 
-                className="btn btn-square bg-orange-500 hover:bg-orange-600 border-orange-500 text-white"
-                onClick={() => copyToClipboard(convertedDate, 'Converted Date (UTC)')}
-              >
-                <TbCopy />
-              </button>
-            </div>
-          </div>
+        <ResultSection>
+          <CopyField
+            label="Date (UTC)"
+            value={convertedDate}
+            onCopy={() => copyToClipboard(convertedDate, 'Converted Date (UTC)')}
+          />
 
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text font-medium text-orange-400">Date (Local)</span>
-            </label>
-            <div className="input-group">
-              <input 
-                type="text" 
-                className="input input-bordered flex-1 font-mono bg-base-200" 
-                value={convertedDateLocal}
-                readOnly
-              />
-              <button 
-                className="btn btn-square bg-orange-500 hover:bg-orange-600 border-orange-500 text-white"
-                onClick={() => copyToClipboard(convertedDateLocal, 'Converted Date (Local)')}
-              >
-                <TbCopy />
-              </button>
-            </div>
-          </div>
-
+          <CopyField
+            label="Date (Local)"
+            value={convertedDateLocal}
+            onCopy={() => copyToClipboard(convertedDateLocal, 'Converted Date (Local)')}
+          />
           <div className="form-control">
             <label className="label">
               <span className="label-text font-medium text-orange-400">Relative Time</span>
@@ -138,7 +108,7 @@ export default function TimestampConverter({ controller }: Props) {
               readOnly
             />
           </div>
-        </div>
+        </ResultSection>
       )}
 
   {/* Toast rendering centralized in page */}

@@ -52,7 +52,7 @@ export default function RootLayout({
             __html: `
               if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/react-timestamper/sw.js')
+                  navigator.serviceWorker.register('/react-timestamper/sw.js', { scope: '/react-timestamper/' })
                     .then(function(registration) {
                       console.log('SW registered: ', registration);
                     })

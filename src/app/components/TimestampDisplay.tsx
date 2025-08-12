@@ -1,6 +1,6 @@
 'use client';
 
-import { TbCopy } from "react-icons/tb";
+import CopyField from "./common/CopyField";
 import { useTimestampController, type TimestampController } from "../useController";
 
 type Props = {
@@ -12,7 +12,7 @@ export default function TimestampDisplay({ controller }: Props) {
   const fallback = useTimestampController();
 
   const ctx = controller ?? fallback;
-  
+
   const {
     currentTimestamp,
     currentTimestampMs,
@@ -36,91 +36,28 @@ export default function TimestampDisplay({ controller }: Props) {
 
   return (
     <div className="space-y-4">
-      {/* Unix Timestamp (seconds) */}
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text font-medium text-orange-400">Unix Timestamp (seconds)</span>
-        </label>
-        <div className="input-group">
-          <input 
-            type="text" 
-            className="input input-bordered flex-1 font-mono text-lg bg-base-200" 
-            value={currentTimestamp}
-            readOnly
-          />
-          <button 
-            className="btn btn-square bg-orange-500 hover:bg-orange-600 border-orange-500 text-white"
-            onClick={() => copyToClipboard(currentTimestamp.toString(), 'Timestamp')}
-          >
-            <TbCopy />
-          </button>
-        </div>
-      </div>
-
-      {/* Unix Timestamp (milliseconds) */}
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text font-medium text-orange-400">Unix Timestamp (milliseconds)</span>
-        </label>
-        <div className="input-group">
-          <input 
-            type="text" 
-            className="input input-bordered flex-1 font-mono text-lg bg-base-200" 
-            value={currentTimestampMs}
-            readOnly
-          />
-          <button 
-            className="btn btn-square bg-orange-500 hover:bg-orange-600 border-orange-500 text-white"
-            onClick={() => copyToClipboard(currentTimestampMs.toString(), 'Timestamp (ms)')}
-          >
-            <TbCopy />
-          </button>
-        </div>
-      </div>
-
-      {/* Current Date (UTC) */}
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text font-medium text-orange-400">Current Date (UTC)</span>
-        </label>
-        <div className="input-group">
-          <input 
-            type="text" 
-            className="input input-bordered flex-1 font-mono bg-base-200" 
-            value={formattedDates.utc}
-            readOnly
-          />
-          <button 
-            className="btn btn-square bg-orange-500 hover:bg-orange-600 border-orange-500 text-white"
-            onClick={() => copyToClipboard(formattedDates.utc, 'Date (UTC)')}
-          >
-            <TbCopy />
-          </button>
-        </div>
-      </div>
-
-      {/* Current Date (Local) */}
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text font-medium text-orange-400">Current Date (Local)</span>
-        </label>
-        <div className="input-group">
-          <input 
-            type="text" 
-            className="input input-bordered flex-1 font-mono bg-base-200" 
-            value={formattedDates.local}
-            readOnly
-          />
-          <button 
-            className="btn btn-square bg-orange-500 hover:bg-orange-600 border-orange-500 text-white"
-            onClick={() => copyToClipboard(formattedDates.local, 'Date (Local)')}
-          >
-            <TbCopy />
-          </button>
-        </div>
-      </div>
-
-  {/* Toast rendering centralized in page */}
+      <CopyField
+        label="Unix Timestamp (seconds)"
+        value={currentTimestamp}
+        onCopy={() => copyToClipboard(currentTimestamp.toString(), 'Timestamp')}
+        large
+      />
+      <CopyField
+        label="Unix Timestamp (milliseconds)"
+        value={currentTimestampMs}
+        onCopy={() => copyToClipboard(currentTimestampMs.toString(), 'Timestamp (ms)')}
+        large
+      />
+      <CopyField
+        label="Current Date (UTC)"
+        value={formattedDates.utc}
+        onCopy={() => copyToClipboard(formattedDates.utc, 'Date (UTC)')}
+      />
+      <CopyField
+        label="Current Date (Local)"
+        value={formattedDates.local}
+        onCopy={() => copyToClipboard(formattedDates.local, 'Date (Local)')}
+      />
     </div>
   );
 }

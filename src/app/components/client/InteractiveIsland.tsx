@@ -1,9 +1,11 @@
-'use client';
+"use client";
 
 import { TbClock } from 'react-icons/tb';
 import TimestampDisplay from '../TimestampDisplay';
 import TimestampConverter from '../TimestampConverter';
 import { useTimestampController } from '../../useController';
+import InstallPWAButton from './InstallPWAButton';
+import ServiceWorkerUpdateToast from './ServiceWorkerUpdateToast';
 
 export default function InteractiveIsland() {
   const controller = useTimestampController();
@@ -44,6 +46,9 @@ export default function InteractiveIsland() {
           </div>
         </div>
       )}
+
+      <InstallPWAButton />
+      <ServiceWorkerUpdateToast />
     </div>
   );
 }
