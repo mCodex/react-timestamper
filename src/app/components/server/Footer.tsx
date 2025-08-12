@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="footer footer-center bg-base-100 text-base-content p-6 mt-8 border-t border-base-200">
-      <aside className="max-w-4xl">
+    <footer className="footer footer-center bg-base-100 text-base-content p-6 border-t border-base-200 w-full">
+      <aside className="max-w-4xl mx-auto px-4">
         <p>
           Built with <span className="text-orange-500">DaisyUI</span> + Next.js 15 • Open Source ♥️ • Made for developers who live in
           <span className="mx-1">⏱️</span> time.

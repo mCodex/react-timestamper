@@ -37,6 +37,12 @@ body {
   animation: slow-spin 40s linear infinite;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-slow-spin {
+    animation: none;
+  }
+}
+
 /* Radial gradient helper (fallback when not using Tailwind class) */
 .bg-gradient-radial {
   background: radial-gradient(circle at center, var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to));
