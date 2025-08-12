@@ -1,17 +1,25 @@
 'use client';
 
 import { TbCopy } from "react-icons/tb";
-import { useTimestampController } from "../useController";
+import { useTimestampController, type TimestampController } from "../useController";
 
-export default function TimestampDisplay() {
-  const { 
-    currentTimestamp, 
-    currentTimestampMs, 
+type Props = {
+  controller?: TimestampController;
+  showToast?: boolean; // kept for compatibility but not used here anymore
+};
+
+export default function TimestampDisplay({ controller }: Props) {
+  const fallback = useTimestampController();
+
+  const ctx = controller ?? fallback;
+  
+  const {
+    currentTimestamp,
+    currentTimestampMs,
     mounted,
-    copyToClipboard, 
+    copyToClipboard,
     getCurrentFormattedDates,
-    copySuccess 
-  } = useTimestampController();
+  } = ctx;
 
   const formattedDates = getCurrentFormattedDates();
 
@@ -112,14 +120,7 @@ export default function TimestampDisplay() {
         </div>
       </div>
 
-      {/* Copy Success Toast */}
-      {copySuccess && (
-        <div className="toast toast-top toast-center">
-          <div className="alert alert-success">
-            <span>{copySuccess}</span>
-          </div>
-        </div>
-      )}
+  {/* Toast rendering centralized in page */}
     </div>
   );
 }

@@ -1,18 +1,20 @@
 'use client';
 
 import { TbCopy } from "react-icons/tb";
-import { useTimestampController } from "../useController";
+import { useTimestampController, type TimestampController } from "../useController";
 import { timestampSchema } from "../schemas/timestamp";
 
-export default function TimestampConverter() {
+type Props = { controller?: TimestampController };
+
+export default function TimestampConverter({ controller }: Props) {
+  const fallback = useTimestampController();
   const { 
     form, 
     convertedDate, 
     convertedDateLocal, 
     relativeTime, 
     copyToClipboard,
-    copySuccess 
-  } = useTimestampController();
+  } = controller ?? fallback;
 
   return (
     <div className="space-y-4">
@@ -139,14 +141,7 @@ export default function TimestampConverter() {
         </div>
       )}
 
-      {/* Copy Success Toast */}
-      {copySuccess && (
-        <div className="toast toast-top toast-center">
-          <div className="alert alert-success">
-            <span>{copySuccess}</span>
-          </div>
-        </div>
-      )}
+  {/* Toast rendering centralized in page */}
     </div>
   );
 }

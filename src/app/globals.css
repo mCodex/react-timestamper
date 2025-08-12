@@ -26,3 +26,18 @@ body {
   transform: translateY(-2px);
   transition: transform 0.2s ease;
 }
+
+/* Subtle rotating glow background */
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-slow-spin {
+  animation: slow-spin 40s linear infinite;
+}
+
+/* Radial gradient helper (fallback when not using Tailwind class) */
+.bg-gradient-radial {
+  background: radial-gradient(circle at center, var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to));
+}

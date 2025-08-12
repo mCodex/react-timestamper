@@ -101,3 +101,6 @@ export const useTimestampController = () => {
 };
 
 export default useTimestampController;
+
+// Public type for consumers that want to share a single controller instance
+export type TimestampController = ReturnType<typeof useTimestampController>;

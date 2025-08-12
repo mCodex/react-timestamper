@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tanstack/react-form": "^1.19.0",
+    "@tanstack/react-form": "^1.19.1",
     "dayjs": "^1.11.13",
     "next": "15.4.6",
     "react": "19.1.1",
